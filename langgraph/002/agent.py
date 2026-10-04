@@ -6,7 +6,6 @@ from typing import Literal, TypedDict, get_args
 
 from langgraph.graph import END, START, StateGraph
 from pydantic import BaseModel, Field
-from pytest import Class
 
 
 def get_first(items: Iterable[tuple], checker=lambda x: x is not None):
@@ -131,7 +130,7 @@ def make_router(threshold: float):
     return route_by_confidence
 
 
-def compile_research_graph(threshold: float = 0.8):
+def compile_classifier_graph(threshold: float = 0.8):
     g = StateGraph(State)
 
     # g.add_node("search", search_node)
@@ -158,7 +157,7 @@ def compile_research_graph(threshold: float = 0.8):
 
 
 if __name__ == "__main__":
-    app = compile_research_graph()
+    app = compile_classifier_graph()
     hi = app.invoke(
         {
             "ticket_subject": "Cannot access my account",
