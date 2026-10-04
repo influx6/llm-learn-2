@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import os
 from collections.abc import Iterable
-from typing import Literal, Optional, TypedDict
+from typing import Literal, TypedDict, get_args
 
 from langgraph.graph import END, START, StateGraph
 from pydantic import BaseModel, Field
@@ -47,9 +47,7 @@ def get_llm():
 
 CategoryTypes = Literal["billing", "technical", "fraud", "account", "general"]
 
-# AI: can i turn CategoryTypes into a list or set for this vairable? its a type but i wander if i use it
-# as is for this constant
-CATEGORIES = ("billing", "technical", "fraud", "account", "general")
+CATEGORIES = get_args(CategoryTypes)
 
 # ---- Deterministic keyword classifier (mock path, used by tests). ----
 KEYWORDS = {
